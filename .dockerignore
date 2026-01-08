@@ -1,0 +1,51 @@
+# Ignore Python artifacts
+__pycache__/
+*.py[cod]
+*.pyo
+.Python
+env/
+venv/
+.venv/
+
+# Ignore test files and results
+tests/
+pytest.ini
+.pytest_cache/
+htmlcov/
+.coverage
+test-results.xml
+
+# Ignore documentation
+documentation/
+*.md
+!README.md
+
+# Ignore git
+.git/
+.gitignore
+.github/
+
+# Ignore IDE files
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Ignore environment files
+.env
+.env.*
+!.env.example
+
+# Ignore Docker files (not needed inside container)
+Dockerfile
+docker-compose*.yml
+.dockerignore
+
+# Ignore cloud build
+cloudbuild.yaml
+
+# Ignore local development files
+*.log
+*.sqlite
+*.db
+logs/
