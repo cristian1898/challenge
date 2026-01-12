@@ -60,19 +60,16 @@ RUN rm -rf tests/ documentation/ .git/ .github/ *.md .env* pytest.ini
 # Switch to non-root user
 USER appuser
 
-# Expose port
-EXPOSE 8000
+EXPOSE 8080
 
-# Health check
 HEALTHCHECK --interval=30s --timeout=10s --start-period=5s --retries=3 \
-    CMD curl -f http://localhost:8000/health/live || exit 1
+    CMD curl -f http://localhost:${PORT:-8080}/health/live || exit 1
 
-# Run the application
-CMD ["gunicorn", "app.main:app", \
-    "--workers", "4", \
-    "--worker-class", "uvicorn.workers.UvicornWorker", \
-    "--bind", "0.0.0.0:8000", \
-    "--access-logfile", "-", \
-    "--error-logfile", "-", \
-    "--capture-output", \
-    "--enable-stdio-inheritance"]
+CMD gunicorn app.main:app \
+    --workers 4 \
+    --worker-class uvicorn.workers.UvicornWorker \
+    --bind 0.0.0.0:${PORT:-8080} \
+    --access-logfile - \
+    --error-logfile - \
+    --capture-output \
+    --enable-stdio-inheritance
