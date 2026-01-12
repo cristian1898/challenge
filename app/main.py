@@ -72,9 +72,9 @@ Rate limiting may be applied in production environments.
 Check response headers for rate limit information.
         """,
         version=settings.app_version,
-        docs_url="/docs" if settings.debug else None,
-        redoc_url="/redoc" if settings.debug else None,
-        openapi_url="/openapi.json" if settings.debug else "/openapi.json",
+        docs_url="/docs",
+        redoc_url="/redoc",
+        openapi_url="/openapi.json",
         lifespan=lifespan,
     )
     
