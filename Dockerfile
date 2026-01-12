@@ -54,8 +54,9 @@ COPY --from=builder /opt/venv /opt/venv
 # Copy application code
 COPY --chown=appuser:appgroup . .
 
-# Remove unnecessary files
-RUN rm -rf tests/ documentation/ .git/ .github/ *.md .env* pytest.ini
+# Remove unnecessary files and create data directory for SQLite
+RUN rm -rf tests/ documentation/ .git/ .github/ *.md .env* pytest.ini && \
+    mkdir -p /app/data && chown appuser:appgroup /app/data
 
 # Switch to non-root user
 USER appuser

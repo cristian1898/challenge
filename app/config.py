@@ -30,7 +30,7 @@ class Settings(BaseSettings):
     
     # Database
     database_url: str = Field(
-        default="sqlite+aiosqlite:///./app.db",
+        default="sqlite+aiosqlite:///./data/app.db",
         description="Database connection URL"
     )
     database_echo: bool = Field(default=False, description="Echo SQL queries")
